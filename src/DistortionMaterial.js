@@ -39,6 +39,16 @@ class DistortMaterialImpl extends MeshPhysicalMaterial {
     shader.vertexShader = shader.vertexShader.replace(
       "#include <begin_vertex>",
       `
+        vec2 p = vUv;
+        float brightness = 0.;
+        for (float i = 1.; i <= 10.; i++) {
+          float angle = time /(3.2 * i);
+          vec2 direction = vec2(cos(angle), sin(angle));
+          brightness += cos(dot(p, direction));
+        }
+      
+        brightness = abs(mod(brightness, 2.)-1.);
+
         vec4 myWorldPosition = modelMatrix * vec4(position, 1.0);
 
         float updateTime = time / 50.0;
@@ -46,7 +56,7 @@ class DistortMaterialImpl extends MeshPhysicalMaterial {
         vec3 transformed;
         if (noise2 > 0.2) {
           float noise = 2.0 * (perlin(position +  (1.0 + 10.0 * noise2)));
-          transformed = position * (noise2 * noise * pow(distort, 2.0) + radius);
+          transformed = position * (noise * brightness * pow(distort, 2.0) + radius);
         } else {
           transformed = vec3(position);
         }
