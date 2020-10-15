@@ -1,6 +1,6 @@
 # Preview: https://r3f-ring.netlify.app/ ⊚ ⊚ ⊚
 
-![Featured Image](https://github.com/emmelleppi/codrops-r3f-mirrors/blob/master/screenshot.jpg?raw=true)
+![Featured Image](https://github.com/emmelleppi/r3f-ring/blob/master/screenshot.jpg?raw=true)
 
 ## Installation
 

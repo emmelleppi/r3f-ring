@@ -19,7 +19,7 @@ const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 function Scene() {
   const ref = useSlerp();
-  const { size, viewport } = useThree();
+  const { size } = useThree();
 
   const [ao, normal, height, roughness] = useTextureLoader([
     "/ao.jpg",
