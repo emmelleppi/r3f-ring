@@ -7,6 +7,7 @@ import { MeshDistortMaterial } from "./DistortionMaterial";
 import Environment from "./Environment";
 import "./styles.css";
 import {
+  Bloom,
   BrightnessContrast,
   EffectComposer,
   Noise,
@@ -14,8 +15,10 @@ import {
 } from "@react-three/postprocessing";
 import useSlerp from "./useSlerp";
 
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
 function Scene() {
-  const ref = useSlerp()
+  const ref = useSlerp();
   const { size, viewport } = useThree();
 
   const [ao, normal, height, roughness] = useTextureLoader([
@@ -26,21 +29,24 @@ function Scene() {
   ]);
 
   useEffect(() => {
-    ao.wrapT = ao.wrapS = THREE.RepeatWrapping
-    ao.repeat = new THREE.Vector2(4, 4)
-    normal.wrapT = normal.wrapS = THREE.RepeatWrapping
-    normal.repeat = new THREE.Vector2(4, 4)
-    height.wrapT = height.wrapS = THREE.RepeatWrapping
-    height.repeat = new THREE.Vector2(4, 4)
-    roughness.wrapT = roughness.wrapS = THREE.RepeatWrapping
-    roughness.repeat = new THREE.Vector2(4, 4)
-  }, [ao, normal, height, roughness])
+    ao.wrapT = ao.wrapS = THREE.RepeatWrapping;
+    ao.repeat = new THREE.Vector2(4, 4);
+    normal.wrapT = normal.wrapS = THREE.RepeatWrapping;
+    normal.repeat = new THREE.Vector2(4, 4);
+    height.wrapT = height.wrapS = THREE.RepeatWrapping;
+    height.repeat = new THREE.Vector2(4, 4);
+    roughness.wrapT = roughness.wrapS = THREE.RepeatWrapping;
+    roughness.repeat = new THREE.Vector2(4, 4);
+  }, [ao, normal, height, roughness]);
 
   return (
     <>
       <spotLight intensity={2} position={[0, 30, 40]} />
       <spotLight intensity={2} position={[-50, 30, 40]} />
-      <Torus ref={ref} args={[5, 1.5, 516, 516]}>
+      <Torus
+        ref={ref}
+        args={[5, 1.5, isMobile ? 258 : 516, isMobile ? 258 : 516]}
+      >
         <MeshDistortMaterial
           color="#a19266"
           metalness={1}
@@ -56,16 +62,12 @@ function Scene() {
           roughnessMap={roughness}
         />
       </Torus>
-      <Suspense fallback={null}>
-        <Environment />
-      </Suspense>
+      <Environment />
     </>
   );
 }
 
 function App() {
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
   return (
     <>
       <Canvas
@@ -96,11 +98,21 @@ function App() {
           fontSize={0.6}
           letterSpacing={0}
           textAlign="center"
-          font="https://fonts.gstatic.com/s/overtherainbow/v11/11haGoXG1k_HKhMLUWz7Mc7vvW5ulvSs8w.woff"
+          font="https://fonts.gstatic.com/s/liujianmaocao/v5/845DNN84HJrccNonurqXILGpvCOoTe3fLw.woff"
         >
-          get an award in 100 loc
+          a collection of creative libs
         </Text>
-        <EffectComposer>
+        <Text
+          position={[0, -1.4, 10]}
+          fontSize={0.6}
+          letterSpacing={0}
+          textAlign="center"
+          font="https://fonts.gstatic.com/s/liujianmaocao/v5/845DNN84HJrccNonurqXILGpvCOoTe3fLw.woff"
+        >
+          to rule them all
+        </Text>
+        <EffectComposer multisampling={0}>
+          <Bloom luminanceThreshold={0.55} />
           <Noise opacity={0.03} />
           <Vignette eskil={false} offset={0.1} darkness={0.7} />
           <BrightnessContrast brightness={0.07} contrast={0.15} />

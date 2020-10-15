@@ -45,7 +45,7 @@ class DistortMaterialImpl extends MeshPhysicalMaterial {
         float noise2 = easeInOutCirc(snoise(vec3(myWorldPosition.xyz / 40.0 + updateTime * 2.0)));
         vec3 transformed;
         if (noise2 > 0.2) {
-          float noise = 2.0 * (perlin(position + updateTime * (1.0 + 10.0 * noise2)));
+          float noise = 2.0 * (perlin(position +  (1.0 + 10.0 * noise2)));
           transformed = position * (noise2 * noise * pow(distort, 2.0) + radius);
         } else {
           transformed = vec3(position);
@@ -66,7 +66,7 @@ class DistortMaterialImpl extends MeshPhysicalMaterial {
       #include <dithering_fragment>
 
       float mouseFactor = 0.8 + 0.2 * sin(3.14 * mouse.x) * cos(3.14 * mouse.y);
-      float noise = snoise(vec3(gl_FragCoord.xyz / (2000.0 * mouseFactor )+ time * 0.1));
+      float noise = snoise(vec3(gl_FragCoord.xyz / (2000.0 * mouseFactor) + time * 0.1));
       if (noise > 0.5) {
         float gray = dot(gl_FragColor.rgb, vec3(0.299, 0.587, 0.114));
         gl_FragColor = vec4(gray,gray,gray, gl_FragColor.a);
@@ -121,16 +121,14 @@ class DistortMaterialImpl extends MeshPhysicalMaterial {
 export const MeshDistortMaterial = React.forwardRef(
   ({ speed = 1, ...props }, ref) => {
     const material = useMemo(() => new DistortMaterialImpl(), []);
-    
-    useFrame(
-      (state) => {
-        if (material) {
-          material.mouse.x = state.mouse.x / 2
-          material.mouse.y = state.mouse.y / 2
-          material.time = state.clock.getElapsedTime() * speed
-        }
+
+    useFrame((state) => {
+      if (material) {
+        material.mouse.x = state.mouse.x / 2;
+        material.mouse.y = state.mouse.y / 2;
+        material.time = state.clock.getElapsedTime() * speed;
       }
-    );
+    });
 
     return (
       <primitive
