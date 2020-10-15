@@ -45,7 +45,7 @@ function Scene() {
       <spotLight intensity={2} position={[-50, 30, 40]} />
       <Torus
         ref={ref}
-        args={[5, 1.5, isMobile ? 258 : 516, isMobile ? 258 : 516]}
+        args={[5, 1.5, isMobile ? 128 : 512, isMobile ? 128 : 512]}
       >
         <MeshDistortMaterial
           color="#a19266"
