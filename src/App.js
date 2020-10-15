@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect } from "react";
 import { Canvas, useThree } from "react-three-fiber";
-import { Text, Torus, useTextureLoader } from "@react-three/drei";
+import { Loader, Text, Torus, useTextureLoader } from "@react-three/drei";
 import * as THREE from "three";
 
 import { MeshDistortMaterial } from "./DistortionMaterial";
@@ -120,6 +120,7 @@ function App() {
           <BrightnessContrast brightness={0.07} contrast={0.15} />
         </EffectComposer>
       </Canvas>
+      <Loader />
     </>
   );
 }
