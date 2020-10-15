@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { MeshPhysicalMaterial } from "three";
-import { useFrame, useThree } from "react-three-fiber";
+import { useFrame } from "react-three-fiber";
 import { distort, voronoi, perlin } from "./distort";
 import * as THREE from "three";
 

@@ -1,5 +1,5 @@
-import React, { Suspense, useEffect, useRef } from "react";
-import { Canvas, useFrame, useThree } from "react-three-fiber";
+import React, { Suspense, useEffect } from "react";
+import { Canvas, useThree } from "react-three-fiber";
 import { Text, Torus, useTextureLoader } from "@react-three/drei";
 import * as THREE from "three";
 
@@ -87,7 +87,7 @@ function App() {
           fontSize={1.2}
           letterSpacing={0.3}
           textAlign="center"
-          font="http://fonts.gstatic.com/s/cormorantgaramond/v9/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtM.woff"
+          font="https://fonts.gstatic.com/s/cormorantgaramond/v9/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtM.woff"
         >
           POIMANDRES
         </Text>
@@ -96,7 +96,7 @@ function App() {
           fontSize={0.6}
           letterSpacing={0}
           textAlign="center"
-          font="http://fonts.gstatic.com/s/overtherainbow/v11/11haGoXG1k_HKhMLUWz7Mc7vvW5ulvSs8w.woff"
+          font="https://fonts.gstatic.com/s/overtherainbow/v11/11haGoXG1k_HKhMLUWz7Mc7vvW5ulvSs8w.woff"
         >
           get an award in 100 loc
         </Text>
