@@ -72,7 +72,7 @@ function App() {
     <>
       <Canvas
         pixelRatio={Math.min(2, isMobile ? window.devicePixelRatio : 1)}
-        camera={{ position: [0, 0, 20], near: 0.1, far: 30, fov: 50 }}
+        camera={{ position: [0, 0, 20], near: 0.1, far: 100, fov: 50 }}
         gl={{
           powerPreference: "high-performance",
           antialias: false,
@@ -81,36 +81,38 @@ function App() {
         }}
       >
         <color attach="background" args={["#505050"]} />
-        <Suspense fallback={null}>
-          <Scene />
-        </Suspense>
-        <Text
-          position={[0, 0.7, 10]}
-          fontSize={1.2}
-          letterSpacing={0.3}
-          textAlign="center"
-          font="https://fonts.gstatic.com/s/cormorantgaramond/v9/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtM.woff"
-        >
-          POIMANDRES
-        </Text>
-        <Text
-          position={[0, -0.6, 10]}
-          fontSize={0.6}
-          letterSpacing={0}
-          textAlign="center"
-          font="https://fonts.gstatic.com/s/liujianmaocao/v5/845DNN84HJrccNonurqXILGpvCOoTe3fLw.woff"
-        >
-          a collection of creative libs
-        </Text>
-        <Text
-          position={[0, -1.4, 10]}
-          fontSize={0.6}
-          letterSpacing={0}
-          textAlign="center"
-          font="https://fonts.gstatic.com/s/liujianmaocao/v5/845DNN84HJrccNonurqXILGpvCOoTe3fLw.woff"
-        >
-          to rule them all
-        </Text>
+        <group position={[0, 0, isMobile ? -16 : 0]} >
+          <Suspense fallback={null}>
+            <Scene />
+          </Suspense>
+          <Text
+            position={[0, 0.7, 10]}
+            fontSize={1.2}
+            letterSpacing={0.3}
+            textAlign="center"
+            font="https://fonts.gstatic.com/s/cormorantgaramond/v9/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtM.woff"
+          >
+            POIMANDRES
+          </Text>
+          <Text
+            position={[0, -0.6, 10]}
+            fontSize={isMobile ? 0.8 : 0.6}
+            letterSpacing={0}
+            textAlign="center"
+            font="https://fonts.gstatic.com/s/liujianmaocao/v5/845DNN84HJrccNonurqXILGpvCOoTe3fLw.woff"
+          >
+            a collection of creative libs
+          </Text>
+          <Text
+            position={[0, -1.4, 10]}
+            fontSize={isMobile ? 0.8 : 0.6}
+            letterSpacing={0}
+            textAlign="center"
+            font="https://fonts.gstatic.com/s/liujianmaocao/v5/845DNN84HJrccNonurqXILGpvCOoTe3fLw.woff"
+          >
+            to rule them all
+          </Text>
+        </group>
         <EffectComposer multisampling={0}>
           <Bloom luminanceThreshold={0.55} />
           <Noise opacity={0.03} />
