@@ -29,12 +29,12 @@ class DistortMaterialImpl extends MeshPhysicalMaterial {
       ${distort}
 
       float fsnoise(float val1, float val2, float val3){
-        return snoise(vec3(val1,val2,val3)) ;
+        return snoise(vec3(val1,val2,val3));
       }
 
       vec3 distortFunct(vec3 transformed, float factor) {
-        float radiusVariationAmplitude = 3.0;
-        float radiusNoiseFrequency = 2.0;
+        float radiusVariationAmplitude = 1.2;
+        float radiusNoiseFrequency = 0.9;
         vec3 circle = transformed;
         circle.z *= 0.;
         vec3 sphere = normalize(circle) * (length(circle)  - radius );
@@ -46,7 +46,7 @@ class DistortMaterialImpl extends MeshPhysicalMaterial {
           transformed.x * radiusNoiseFrequency + time,
           transformed.y * radiusNoiseFrequency + time,
           transformed.z * radiusNoiseFrequency + time 
-        ) * radiusVariationAmplitude * easeInOutCirc(factor);
+        ) * radiusVariationAmplitude * factor;
 
         // Add the noise to the sphere and put everything back together.
         return normalize(sphere) * (length(sphere) + (radiusVariation)) + normalize(circle) * radius ;

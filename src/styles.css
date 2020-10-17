@@ -45,9 +45,15 @@ body {
 
 #root > a {
   position: absolute;
-  top: 50px;
-  left: 50px;
-  transform: scale(1.75);
+  top: 25px;
+  left: 0px;
+  transform: scale(1.25);
+  
+  @media screen and (min-width: 426px) {
+    top: 50px;
+    left: 50px;
+    transform: scale(1.75);
+  }
 }
 #root > a > svg {
   fill: none;

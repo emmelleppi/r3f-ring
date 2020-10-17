@@ -31,18 +31,30 @@ export default function Overlay() {
             css={`
               white-space: pre;
               margin-bottom: 2.5rem;
-              font-size: 6rem;
-              line-height: 0.6rem;
-              letter-spacing: 1.5rem;
+              font-size: 3rem;
+              line-height: 4rem;
+              font-weight: 600;
+              letter-spacing: 1rem;
+              white-space: inherit;
               font-family: Cormorant Garamond;
+              
+              @media screen and (min-width: 426px) {
+                font-weight: 400;
+                line-height: 5rem;
+                font-size: 6rem;
+                letter-spacing: 1.5rem;
+              }
             `}
           >
             DISTORTED VERTICES
           </div>
           <div
             css={`
-              font-size: 4.5rem;
+              font-size: 2rem;
               font-family: Liu Jian Mao Cao;
+              @media screen and (min-width: 426px) {
+                font-size: 4.5rem;
+              }
             `}
           >
             on a beautiful golden torus
@@ -50,29 +62,5 @@ export default function Overlay() {
         </div>
       </div>
     </div>
-  );
-}
-
-export function Socials() {
-  return (
-    <>
-      <div
-        css={`
-          position: absolute;
-          right: 50px;
-          top: 50px;
-          display: flex;
-          gap: 4rem;
-          font-size: 1.5rem;
-          font-weight: 500;
-          font-family: Arial;
-          letter-spacing: 0.3rem;
-        `}
-      >
-        <a href="https://twitter.com/pmndrs">Twitter</a>
-        <a href="https://github.com/pmndrs">Github</a>
-        <a href="https://pmnd.rs/discord">Discord</a>
-      </div>
-    </>
   );
 }

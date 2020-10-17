@@ -1,6 +1,6 @@
 import React, { Suspense, useLayoutEffect, useMemo, useRef } from "react";
 import { Canvas, useFrame, useThree } from "react-three-fiber";
-import { Loader, Torus, useTexture } from "@react-three/drei";
+import { Loader, Stats, Torus, useTexture } from "@react-three/drei";
 import * as THREE from "three";
 import { Badge } from "@pmndrs/branding";
 import Environment from "@react-three/drei/Environment";
@@ -47,7 +47,7 @@ function DistortedTorus() {
 
   return (
     <>
-      <Torus ref={ref} args={[TORUS_RADIUS, 1.5, 128, 128]}>
+      <Torus ref={ref} args={[TORUS_RADIUS, 1.5, 256/2, 256*2]}>
         <DistortTorusMaterial
           color="#a19266"
           metalness={1}
